@@ -26,7 +26,7 @@ typescript
 console.log ('Holamundo');
 '''
 
-![Esto es para poner una imagen] (https://www.tooltyp.com/wp-content/uploads/2014/10/1900x920-8-beneficios-de-usar-imagenes-en-nuestros-sitios-web.jpg)
+![Esto es para poner una imagen](https://preview.redd.it/does-anyone-know-where-this-image-of-plankton-come-from-v0-pyhppn3djl1e1.jpeg?auto=webp&s=8e5697519a0f29a202862cce7daddbd184f8118e)
 
 |Nombre|Edad|Pais|
 |------|----|----|
@@ -35,3 +35,8 @@ console.log ('Holamundo');
 | Pedro| 2  |Arg |
 
 ---
+Las tres lineas medias son para hacer una separacion 
+--- 
+
+- [x] Tarea completada
+- [] Tarea pendiente
