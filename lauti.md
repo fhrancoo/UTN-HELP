@@ -20,3 +20,19 @@ console.log("Hola gente");
 
 [Esto es una imagen:miguel](![alt text](image.png))
 
+|Hola|mundo|xd|
+|----|-----|--|
+|Chau|migue|as|
+
+---
+- [ ]Tarea pendiente
+- [x]Tarea completada
+- [ ]Otra tarea pendiente
+
+```text
+|-public/
+|   
+|
+|
+|
+|
