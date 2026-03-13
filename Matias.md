@@ -21,8 +21,13 @@ muy procrastinador.
 |   Java    |     4      |
 |TypeScript |     2      |
 
+## Enlace y Multimedia
+![Texto alternativo](https://cdn.ethic.es/wp-content/uploads/2023/03/imagen.jpg)
+
 ## Lista de Tareas para Hoy
 
 - [x] Procrastinar.
 - [x] Dormir.
 - [x] Hacer la tarea.
+
+[https://cdn.ethic.es/wp-content/uploads/2023/03/imagen.jpg]: https://cdn.ethic.es/wp-content/uploads/2023/03/imagen.jpg
