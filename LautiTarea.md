@@ -5,7 +5,7 @@
 - **Comida Favorita:** *Pechuga de Pollo*
 
 # Biografía
-Me llamo Lautaro y tengo 19 años, me gusta mucho la programación y disfruto bastante de la carrera.
+Me llamo Lautaro y tengo 19 años y disfruto bastante de la carrera.
 -
 # Lenguajes de programación
 Mis lenguajes de programación favoritos son:
