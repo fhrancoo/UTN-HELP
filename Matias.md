@@ -29,5 +29,3 @@ muy procrastinador.
 - [x] Procrastinar.
 - [x] Dormir.
 - [x] Hacer la tarea.
-
-[https://cdn.ethic.es/wp-content/uploads/2023/03/imagen.jpg]: https://cdn.ethic.es/wp-content/uploads/2023/03/imagen.jpg
