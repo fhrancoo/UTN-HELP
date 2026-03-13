@@ -12,9 +12,9 @@
 ## Lenguajes de programacion
 
 #### Mis lenguajes de programacion favoritos son:
-#### 1. C
-#### 2. Java
-#### 3. Python
+ 1. C
+ 2. Java
+ 3. Python
 ---
 #### A continuación, un ejemplo de cómo imprimir "Hola Mundo" en TypeScript:
 - #### console.log("Hola, Mundo!");
