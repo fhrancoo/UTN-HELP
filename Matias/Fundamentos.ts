@@ -35,3 +35,15 @@ const inventario: producto[] = [
     { nombre: "Pan", precio: -2, categoria: categorias.alimentos },
     { nombre: "Smartphone", precio: 800, categoria: categorias.electronica },
 ];
+let inventarioFiltrado = inventario.filter((p) => preciofinal(p) > 0);
+inventarioFiltrado = inventarioFiltrado.filter((p) => p.categoria === categorias.electronica);
+
+inventarioFiltrado.forEach((p) => {
+
+    if (preciofinal(p) > 0) {
+        console.log(`Producto: ${p.nombre} | Precio final: $${preciofinal(p).toFixed(2)} | Nota: ${nota(p)}`)
+    }
+});
+
+console.log("--------------------------------------------------");
+console.log(`Total de precios finales: $${inventarioFiltrado.reduce((total, p) => total + preciofinal(p), 0).toFixed(2)}`);
