@@ -13,17 +13,16 @@ type Producto = {
 const precioFinal = (p: Producto): number => {
     let precioFinal = p.precio;
     try {
-        if (p.precio === 0) throw new Error("El precio no puede ser cero");
+        if (p.precio < 0) throw new Error("El precio no puede ser negativo");
 
         if (p.precio > 1000) {
             precioFinal = p.precio * 0.9; // Descuento del 10%
         }
-    } catch (error: any) {
-        console.error(error.message);
-        return 0;
-    }
 
-    return precioFinal;
+        return precioFinal
+    } catch (_err) { }
+
+    return 0;
 }
 
 const nota = (p: Producto): string | null => {
@@ -41,3 +40,16 @@ const inventario: Producto[] = [
     { nombre: "Pan", precio: -2, categoria: Categorias.ALIMENTOS },
     { nombre: "Smartphone", precio: 800, categoria: Categorias.ELECTRONICA },
 ];
+
+let inventarioFiltrado = inventario.filter((p) => precioFinal(p) > 0);
+inventarioFiltrado = inventarioFiltrado.filter((p) => p.categoria === Categorias.ELECTRONICA);
+
+inventarioFiltrado.forEach((p) => {
+
+    if (precioFinal(p) > 0) {
+        console.log(`Producto: ${p.nombre} | Precio final: $${precioFinal(p).toFixed(2)} | Nota: ${nota(p)}`)
+    }
+});
+
+console.log("--------------------------------------------------");
+console.log(`Total de precios finales: $${inventarioFiltrado.reduce((total, p) => total + precioFinal(p), 0).toFixed(2)}`);
