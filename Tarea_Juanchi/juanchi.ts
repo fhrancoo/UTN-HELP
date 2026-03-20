@@ -17,40 +17,40 @@
         reduce: calcular el total de los precios finales.
 */
 
-enum Categoria 
+enum Categoria
 {
     ELECTRONICA = "Electronica",
     ROPA = "Ropa",
     ALIMENTOS = "Alimentos"
 }
 
-type Producto = 
+type Producto =
 {
     nombre: string;
     precio: number;
     categoria: Categoria;
 };
 
-function precioFinal(p: Producto): number 
+function precioFinal(p: Producto): number
 {
-    if (p.precio < 0) 
+    if (p.precio < 0)
     {
-        throw new Error('El precio de "${p.nombre}" no puede ser negativo.');
+        throw new Error(`El precio de "${p.nombre}" no puede ser negativo.`);
     }
 
-    else (p.precio > 1000) 
+    if (p.precio > 1000)
     {
         return p.precio * 0.90;
     }
     return p.precio;
 }
 
-function obtenerNota(p: Producto): string | null 
+function obtenerNota(p: Producto): string | null
 {
-    return p.categoria === Categoria.ALIMENTOS ? "perecedero" : null;
+    return p.categoria === Categoria.ALIMENTOS ? "Perecedero" : null;
 }
 
-const inventario: Producto[] = 
+const inventario: Producto[] =
 [
     {nombre: "Monitor gamer", precio: 1200, categoria: Categoria.ELECTRONICA},
     {nombre: "Teclado mecánico", precio: 500, categoria: Categoria.ELECTRONICA},
@@ -59,40 +59,39 @@ const inventario: Producto[] =
     {nombre: "Producto fallado", precio: -50, categoria: Categoria.ROPA}
 ];
 
-console.log("--- recorrido de inventario ---");
-for(const p of inventario) 
+console.log("              --- Recorrido de inventario ---");
+for(const p of inventario)
 {
-    try 
+    try
     {
         const precio = precioFinal(p);
         const nota = obtenerNota(p);
         
-        let salida = 'producto: ${p.nombre} | precio final: ${precio}';
+        let salida = `Producto: ${p.nombre} | Precio final: ${precio}`;
         
-        if (p.precio > 1000) salida += " (descuento aplicado)";
-        if (nota) salida += ' | nota: ${nota}';
+        if (p.precio > 1000) salida += " (Descuento aplicado)";
+        if (nota) salida += ` | Nota: ${nota}`;
     
         console.log(salida);
     }
-        catch (error) 
+        catch (error)
         {
-            if (error instanceof Error) 
+            if (error instanceof Error)
             {
-
-                console.error('error: ${error.message}');
+                console.error(`Error: ${error.message}`);
             }
         }
 }
 
-console.log("\n--- analisis de datos ---");
+console.log("\n       --- Analisis de datos ---");
 
 const soloElectronica = inventario.filter(p => p.categoria === Categoria.ELECTRONICA);
-console.log('productos de electrónica encontrados: ${soloElectronica.length}');
+console.log(`Productos de electrónica encontrados: ${soloElectronica.length}`);
 
 const preciosValidos = inventario
-    .filter(p => p.precio >= 0) // La funcion flecha es equivalente a: function(p) { return p.precio >= 0; }
+    .filter(p => p.precio >= 0)
     .map(p => precioFinal(p));
 
 const totalInventario = preciosValidos.reduce((acc, precio) => acc + precio, 0);
 
-console.log('total acumulado de precios finales: ${totalInventario.toFixed(2)}');
+console.log(`Total acumulado de precios finales: $${totalInventario.toFixed(2)}`);
