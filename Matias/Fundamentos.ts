@@ -28,7 +28,6 @@ const nota = (p: producto): string | null => {
         return null;
     }
 }
-
 const inventario: producto[] = [
     { nombre: "Laptop", precio: 1500, categoria: categorias.electronica },
     { nombre: "Camiseta", precio: 20, categoria: categorias.ropa },
