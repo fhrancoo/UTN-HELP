@@ -35,11 +35,10 @@ function precioFinal(p: Producto): number
 {
     if (p.precio < 0) 
     {
-        // uso de backticks para que p.nombre se renderice
         throw new Error(`el precio de "${p.nombre}" no puede ser negativo.`);
     }
 
-    if (p.precio > 1000) 
+    else (p.precio > 1000) 
     {
         return p.precio * 0.90;
     }
@@ -53,11 +52,11 @@ function obtenerNota(p: Producto): string | null
 
 const inventario: Producto[] = 
 [
-    { nombre: "monitor gamer", precio: 1200, categoria: Categoria.ELECTRONICA },
-    { nombre: "teclado mecánico", precio: 500, categoria: Categoria.ELECTRONICA },
-    { nombre: "campera addidas", precio: 1500, categoria: Categoria.ROPA },
-    { nombre: "masita salada serranitas", precio: 200, categoria: Categoria.ALIMENTOS },
-    { nombre: "producto fallado", precio: -50, categoria: Categoria.ROPA } 
+    {nombre: "Monitor gamer", precio: 1200, categoria: Categoria.ELECTRONICA},
+    {nombre: "Teclado mecánico", precio: 500, categoria: Categoria.ELECTRONICA},
+    {nombre: "Campera addidas", precio: 1500, categoria: Categoria.ROPA},
+    {nombre: "Masita salada serranitas", precio: 200, categoria: Categoria.ALIMENTOS},
+    {nombre: "Producto fallado", precio: -50, categoria: Categoria.ROPA}
 ];
 
 console.log("--- recorrido de inventario ---");
@@ -76,14 +75,14 @@ for(const p of inventario)
     
         console.log(salida);
     }
-    catch (error) 
-    {
-        if (error instanceof Error) 
+        catch (error) 
         {
-            // corrección: cambié ' por `
-            console.error(`error: ${error.message}`);
+            if (error instanceof Error) 
+            {
+                // corrección: cambié ' por `
+                console.error(`error: ${error.message}`);
+            }
         }
-    }
 }
 
 console.log("\n--- analisis de datos ---");
