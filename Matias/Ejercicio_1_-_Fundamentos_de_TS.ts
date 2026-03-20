@@ -1,5 +1,5 @@
 enum categorias{
-   elctronica = "Electronica",
+   electronica = "Electronica",
    ropa = "Ropa",
    alimentos = "Alimentos",
 }
@@ -15,9 +15,24 @@ const preciofinal = (p: producto): number => {
         if (precioCalculado > 1000) {
             precioCalculado *= 0.9;
         }
-        return precioCalculado;
     } catch (error) {
         console.error("Error desconocido:", error);
         return 0;
     }
+    return precioCalculado;
 }
+const nota = (p: producto): string | null => {
+    if (p.categoria === categorias.alimentos) {
+        return "Este producto es perecedero";
+    } else {
+        return null;
+    }
+}
+
+const inventario: producto[] = [
+    { nombre: "Laptop", precio: 1500, categoria: categorias.electronica },
+    { nombre: "Camiseta", precio: 20, categoria: categorias.ropa },
+    { nombre: "Leche", precio: 1.5, categoria: categorias.alimentos },
+    { nombre: "Pan", precio: -2, categoria: categorias.alimentos },
+    { nombre: "Smartphone", precio: 800, categoria: categorias.electronica },
+];
