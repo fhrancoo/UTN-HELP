@@ -16,25 +16,66 @@ map: obtener los precios finales (los que no fallen).
 reduce: calcular el total de los precios finales. */
 
 enum Categoria {
-    Electronica = "Electronica",
+    Electronica = "Electrónica",
     Ropa = "Ropa",
     Alimentos = "Alimentos",
 }
+
 type Producto = {
-    Nombre: string;
-    Precio: number;
-    Categoria: Categoria;
-};
-const precioFinal = (p:Producto): number => {
+    nombre: string;
+    precio: number;
+    categoria: Categoria;
+}
+
+const precioFinal = (p: Producto): number => {
+    if (p.precio < 0) {
+        throw new Error(`El precio de ${p.nombre} no puede ser negativo`);
+    }
+    if (p.precio > 1000) {
+        return p.precio * 0.9; // Descuento del 10%
+    }
+    return p.precio;
+}
+
+const nota = (p: Producto): string | null => {
+    return p.categoria === Categoria.Alimentos ? "Perecedero" : null;
+}
+
+const inventario: Producto[] = [
+    { nombre: "Laptop", precio: 1500, categoria: Categoria.Electronica },
+    { nombre: "Camiseta", precio: 20, categoria: Categoria.Ropa },
+    { nombre: "Leche", precio: 1.5, categoria: Categoria.Alimentos },
+    { nombre: "Pan", precio: -2, categoria: Categoria.Alimentos }, // negativo para probar error
+    { nombre: "Smartphone", precio: 800, categoria: Categoria.Electronica },
+];
+
+// Recorrer inventario
+for (const p of inventario) {
     try {
-       if(p.Precio === 0) {
-        throw new Error("El precio no puede ser Cero");
-        if(p.Precio > 1000) {
-            return p.Precio * 0.9;
-       } 
-    } catch (error: any) {
-        console.error(error.message);
-        return 0;
+        const precio = precioFinal(p);
+        const extra = nota(p);
+        let salida = `Producto: ${p.nombre} | Precio Final: ${precio}`;
+        if (extra) salida += ` | Nota: ${extra}`;
+        console.log(salida);
+    } catch (err: any) {
+        console.log(`Error: ${err.message}`);
     }
 }
-return precioFinal;
+
+const electronicos = inventario.filter(p => p.categoria === Categoria.Electronica);
+console.log("Productos de Electrónica:", electronicos.map(p => p.nombre));
+
+const preciosFinales = inventario
+    .map(p => {
+        try {
+            return precioFinal(p);
+        } catch {
+            return null;
+        }
+    })
+    .filter((precio): precio is number => precio !== null);
+
+console.log("Precios finales válidos:", preciosFinales);
+
+const total = preciosFinales.reduce((acc, val) => acc + val, 0);
+console.log("Total de precios finales:", total);
