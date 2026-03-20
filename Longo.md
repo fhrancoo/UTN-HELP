@@ -15,4 +15,4 @@
 
 >**Esto es una cita.*
 
-![esto es una imagen] ![alt text](image.png)
+! [esto es una imagen] ![alt text](image.png)
