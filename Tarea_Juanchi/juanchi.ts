@@ -35,7 +35,8 @@ function precioFinal(p: Producto): number
 {
     if (p.precio < 0) 
     {
-        throw new Error('El precio de "${p.nombre}" no puede ser negativo.');
+        // uso de backticks para que p.nombre se renderice
+        throw new Error(`el precio de "${p.nombre}" no puede ser negativo.`);
     }
 
     if (p.precio > 1000) 
@@ -47,19 +48,19 @@ function precioFinal(p: Producto): number
 
 function obtenerNota(p: Producto): string | null 
 {
-    return p.categoria === Categoria.ALIMENTOS ? "Perecedero" : null;
+    return p.categoria === Categoria.ALIMENTOS ? "perecedero" : null;
 }
 
 const inventario: Producto[] = 
 [
-    { nombre: "Monitor Gamer", precio: 1200, categoria: Categoria.ELECTRONICA },
-    { nombre: "Teclado Mecánico", precio: 500, categoria: Categoria.ELECTRONICA },
-    { nombre: "Campera Addidas", precio: 1500, categoria: Categoria.ROPA },
-    { nombre: "Masita salada Serranitas", precio: 200, categoria: Categoria.ALIMENTOS },
-    { nombre: "Producto Fallado", precio: -50, categoria: Categoria.ROPA } 
+    { nombre: "monitor gamer", precio: 1200, categoria: Categoria.ELECTRONICA },
+    { nombre: "teclado mecánico", precio: 500, categoria: Categoria.ELECTRONICA },
+    { nombre: "campera addidas", precio: 1500, categoria: Categoria.ROPA },
+    { nombre: "masita salada serranitas", precio: 200, categoria: Categoria.ALIMENTOS },
+    { nombre: "producto fallado", precio: -50, categoria: Categoria.ROPA } 
 ];
 
-console.log("--- RECORRIDO DE INVENTARIO ---");
+console.log("--- recorrido de inventario ---");
 for(const p of inventario) 
 {
     try 
@@ -67,26 +68,28 @@ for(const p of inventario)
         const precio = precioFinal(p);
         const nota = obtenerNota(p);
         
-        let salida = 'Producto: ${p.nombre} | Precio Final: ${precio}';
-        if (p.precio > 1000) salida += " (Descuento aplicado)";
-        if (nota) salida += ' | Nota: ${nota}';
+        // corrección: cambié ' por `
+        let salida = `producto: ${p.nombre} | precio final: ${precio}`;
+        
+        if (p.precio > 1000) salida += " (descuento aplicado)";
+        if (nota) salida += ` | nota: ${nota}`;
     
         console.log(salida);
     }
-        catch (error) 
+    catch (error) 
+    {
+        if (error instanceof Error) 
         {
-            if (error instanceof Error) 
-            {
-                // La captura muestra "Error: El precio no puede ser negativo"
-                console.error('Error: ${error.message}');
-            }
+            // corrección: cambié ' por `
+            console.error(`error: ${error.message}`);
         }
+    }
 }
 
-console.log("\n--- ANALISIS DE DATOS ---");
+console.log("\n--- analisis de datos ---");
 
 const soloElectronica = inventario.filter(p => p.categoria === Categoria.ELECTRONICA);
-console.log('Productos de Electrónica encontrados: ${soloElectronica.length}');
+console.log(`productos de electrónica encontrados: ${soloElectronica.length}`);
 
 const preciosValidos = inventario
     .filter(p => p.precio >= 0)
@@ -94,4 +97,4 @@ const preciosValidos = inventario
 
 const totalInventario = preciosValidos.reduce((acc, precio) => acc + precio, 0);
 
-console.log('Total acumulado de precios finales: $${totalInventario.toFixed(2)}');
+console.log(`total acumulado de precios finales: ${totalInventario.toFixed(2)}`);
