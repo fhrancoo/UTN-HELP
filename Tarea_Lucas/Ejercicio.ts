@@ -15,7 +15,7 @@ filter: obtener solo productos de Electronica.
 map: obtener los precios finales (los que no fallen).
 reduce: calcular el total de los precios finales. */
 
-enum Categoria {
+/* enum Categoria {
     Electronica = "Electrónica",
     Ropa = "Ropa",
     Alimentos = "Alimentos",
@@ -45,7 +45,7 @@ const inventario: Producto[] = [
     { nombre: "Laptop", precio: 1500, categoria: Categoria.Electronica },
     { nombre: "Camiseta", precio: 20, categoria: Categoria.Ropa },
     { nombre: "Leche", precio: 1.5, categoria: Categoria.Alimentos },
-    { nombre: "Pan", precio: -2, categoria: Categoria.Alimentos }, // negativo para probar error
+    { nombre: "Pan", precio: -2, categoria: Categoria.Alimentos }, 
     { nombre: "Smartphone", precio: 800, categoria: Categoria.Electronica },
 ];
 
@@ -78,4 +78,4 @@ const preciosFinales = inventario
 console.log("Precios finales válidos:", preciosFinales);
 
 const total = preciosFinales.reduce((acc, val) => acc + val, 0);
-console.log("Total de precios finales:", total);
+console.log("Total de precios finales:", total); */
