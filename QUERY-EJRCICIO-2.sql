@@ -45,3 +45,43 @@ CREATE TABLE proveedores_productos (
 )
 
 -- C
+
+INSERT INTO proveedores (razon_social, email) VALUES ('EMPRESA 1', 'emp1@gmail.com')
+INSERT INTO proveedores (razon_social, email) VALUES ('EMPRESA 2', 'emp2@gmail.com')
+
+SELECT * FROM proveedores
+
+INSERT INTO proveedores_productos (proveedor_id, producto_id, precio_proveedor)
+VALUES (1,1,1000.00)
+
+INSERT INTO proveedores_productos (proveedor_id, producto_id, precio_proveedor)
+VALUES (2,1,1000.00)
+
+SELECT * FROM proveedores_productos
+
+UPDATE productos
+SET stock = stock + 5
+WHERE id = 1
+
+DELETE FROM proveedores_productos
+WHERE proveedor_id = 2
+
+
+-- D
+SELECT nombre FROM categorias ORDER BY nombre ASC
+
+SELECT * FROM productos WHERE categoria_id = (SELECT id FROM categorias WHERE nombre = 'Electronica')
+
+SELECT p.nombre, c.nombre FROM productos AS p
+JOIN categorias AS c ON p.categoria_id = c.id
+WHERE c.nombre = 'Electronica'
+
+
+SELECT * FROM productos
+WHERE stock <= 5 ORDER BY stock ASC
+
+SELECT * FROM proveedores
+WHERE email ILIKE '%.com'
+
+SELECT * FROM productos ORDER BY id ASC LIMIT 3
+SELECT * FROM productos ORDER BY id ASC LIMIT 3 OFFSET 3
