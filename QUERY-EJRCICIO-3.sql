@@ -11,16 +11,16 @@ INNER JOIN pedidos ON usuarios.id = pedidos.usuario_id
 
 -- A2
 
-SELECT usuarios.nombre, MAX(pedidos.fecha) AS fecha_ultimo_pedido FROM usuarios
-LEFT JOIN pedidos ON usuarios.id = pedidos.usuario_id
-GROUP BY usuarios.nombre
+SELECT u.id, u.nombre, MAX(p.fecha) AS fecha_ultimo_pedido FROM usuarios AS u
+LEFT JOIN pedidos AS p ON u.id = p.usuario_id
+GROUP BY u.id, u.nombre
 
 -- A3
 
-SELECT u.nombre, SUM(total) AS total_acumulado
+SELECT u.id, u.nombre, SUM(total) AS total_acumulado
 FROM pedidos AS p
 LEFT JOIN usuarios AS u ON u.id = p.usuario_id
-GROUP BY u.nombre
+GROUP BY u.id, u.nombre
 
 -- B1
 
@@ -77,3 +77,11 @@ SELECT
     LAG(p.total) OVER(PARTITION BY p.usuario_id ORDER BY p.fecha) as monto_anterior,
     (p.total - LAG(p.total) OVER(PARTITION BY p.usuario_id ORDER BY p.fecha)) AS diferencia
 	FROM pedidos AS p
+
+-- F3
+SELECT u.id, u.nombre,
+	SUM(p.total) AS gasto_total,
+	RANK() OVER(ORDER BY SUM(p.total) DESC) as ranking
+FROM usuarios AS u
+JOIN pedidos AS p ON p.usuario_id = u.id
+GROUP BY u.id, u.nombre
